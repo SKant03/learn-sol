@@ -18,19 +18,25 @@ contract ProposalContract {
     uint256 proposalid;
     bool activeproposal = false;
     uint256 votes_count = 0;
+
+
     constructor (){
         proposalid = 0;
     }
+
+
     modifier canpropose() {
         require (activeproposal == false , "A proposal in activity");
         _ ;
     }
+
     modifier canvote(){
         require(votes_count !=0,"vote reached");
         _ ;
     }
 
 
+//track function to actively keep track of proposal state
     function track() private {
         votes_count --;
         if(votes_count == 0){
